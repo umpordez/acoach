@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Halant:wght@300;700&family=Nunito:wght@200;600;900&display=swap');
+
+@mixin box-shadow($shadow...) {
+    -webkit-box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    box-shadow: $shadow;
+}
+
+// themes
+body {
+    --main-alert-color: red;
+    --main-bg-color: black;
+    --main-text-color: white;
+    --secondary-text-color: #F4F2F0;
+    --main-opacity: .9;
+    --main-highlight-color: #b61eae;
+    --main-shadow-color: rgba(182, 30, 174, .2);
+}
+body.contrast {
+    --main-alert-color: red;
+    --main-bg-color: white;
+    --main-text-color: black;
+    --secondary-text-color: #040200;
+    --main-opacity: .9;
+    --main-highlight-color: #b61eae;
+    --main-shadow-color: rgba(182, 30, 174, .2);
+}
+
+body, html, #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+    font-family: 'Nunito', Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Halant', serif;
+    font-weight: bold;
+    line-height: 1;
+    margin-top: 0;
+    margin-bottom: .6rem;
+}
+h1 { font-size: 3rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.5rem; font-weight: normal; }
+
+p {
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: .4rem;
+}
+
+#root > main {
+    background: var(--main-bg-color);
+    color: var(--main-text-color);
+    opacity: var(--main-opacity);
+}
+
+#root > main.full {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main.full {
+    > aside {
+
+    }
+
+    > main.body {
+        flex: 1;
+
+        > footer {
+
+        }
+    }
+}
+
+main.box {
+    border-radius: .5rem;
+    width: 100%;
+    max-width: 650px;
+
+    header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-top: 1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+
+        svg {
+            margin-right: 1rem;
+            width: 3rem;
+            height: 3rem;
+        }
+
+        h2 {
+            padding-top: .5rem;
+        }
+    }
+
+    > main {
+        padding: 1rem;
+    }
+}
+
+#root > footer {
+    margin-top: 1rem;
+}
+
+a, .link {
+    color: var(--main-highlight-color);
+    cursor: pointer;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+form {
+    padding-bottom: 1rem;
+
+    label {
+        font-family: 'Halant', serif;
+        display: block;
+        font-size: 1rem;
+        color: var(--secondary-text-color);
+    }
+
+    input {
+        margin-bottom: .5rem;
+        width: 100%;
+        padding: .3rem .5rem;
+        outline-style: none;
+        box-shadow: none;
+        border-radius: .3rem;
+        line-height: 1.15;
+        font-size: 1rem;
+
+        background: var(--main-text-color);
+        border: 2px solid var(--main-text-color);
+        color: var(--main-bg-color);
+
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+
+        &:hover, &:focus {
+            @include box-shadow(
+                2px 2px 4px var(--main-highlight-color),
+                -2px -2px 4px var(--main-highlight-color)
+            );
+        }
+
+        &.invalid {
+            border: 2px solid var(--main-alert-color);
+            @include box-shadow(
+                2px 2px 4px var(--main-alert-color),
+                -2px -2px 4px var(--main-alert-color)
+            );
+        }
+    }
+}
+
+button {
+    border-radius: .5rem;
+    font-size: 1rem;
+
+    -webkit-appearance: none;
+    display: inline-block;
+    display: inline-block;
+    padding: 0.5rem .75rem;
+
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    vertical-align: middle;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1;
+
+    background: var(--main-bg-color);
+    color: var(--main-text-color);
+    border: 1px solid var(--main-highlight-color);
+
+    &:hover, &:active {
+        background: var(--main-highlight-color);
+        color: white;
+    }
+}
+
+small, .small {
+    font-size: .7rem;
+}
+
+@media (min-width: 700px) {
+    main.box {
+        @include box-shadow(
+            4px 4px 2px var(--main-shadow-color),
+            -2px -2px 4px var(--main-shadow-color)
+        );
+    }
+}
+
+@media (max-width: 700px) {
+    main.box {
+        width: 100%;
+        height: 100%;
+    }
+
+    #root > footer {
+        position: absolute;
+        bottom: 1rem;
+    }
+}

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+  <defs/>
+  <defs>
+    <linearGradient id="b" x1="43.936" x2="20.065" y1="53.836" y2="-8.563" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#ffe69b"/>
+      <stop offset="1" stop-color="#fff"/>
+    </linearGradient>
+    <linearGradient id="c" x1="21.994" x2="20.917" y1="33.955" y2="15.815" gradientTransform="translate(-.072 .02) scale(1.003)" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fffeff" stop-opacity=".333"/>
+      <stop offset="1" stop-color="#fffeff" stop-opacity=".216"/>
+    </linearGradient>
+    <radialGradient id="a" cx="23.857" cy="40" r="17.143" gradientTransform="matrix(1 0 0 .5 0 20)" gradientUnits="userSpaceOnUse">
+      <stop offset="0"/>
+      <stop offset="1" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <path fill="url(#a)" d="M41 40a17.143 8.571 0 11-34.286 0A17.143 8.571 0 1141 40z" color="#000" display="block" opacity=".6" transform="matrix(1.0706 0 0 .525 -.893 22.5)"/>
+  <path fill="#73d216" stroke="#4e9a06" stroke-width=".99965" d="M45.5 23c0 11.875-9.626 21.5-21.5 21.5S2.5 34.875 2.5 23 12.126 1.5 24 1.5 45.5 11.127 45.5 23z"/>
+  <path fill="none" stroke="url(#b)" stroke-width="1.168" d="M49.902 26.635c0 13.25-10.741 23.991-23.991 23.991S1.92 39.885 1.92 26.635 12.661 2.644 25.911 2.644s23.991 10.741 23.991 23.991z" opacity=".347" transform="translate(1.818 .198) scale(.85609)"/>
+  <path fill="#eeeeec" stroke="#eeeeec" d="M14.707 25.178c.63 0 1.105.516 1.428 1.549.645 1.936 1.105 2.904 1.38 2.904.209 0 .427-.161.653-.484 4.533-7.26 8.728-13.133 12.584-17.618 1-1.162 2.59-1.742 4.767-1.743.516 0 .863.049 1.04.146.178.097.267.218.267.363 0 .226-.266.67-.799 1.33A235.069 235.069 0 0018.7 35.344c-.37.58-1.129.87-2.275.87-1.161 0-1.847-.047-2.057-.144-.548-.242-1.193-1.476-1.936-3.703-.839-2.468-1.258-4.017-1.258-4.647 0-.677.565-1.33 1.694-1.96.694-.387 1.307-.58 1.84-.58"/>
+  <path fill="url(#c)" d="M43.429 21.8c0 10.863-10.386-6.285-18.731.388-8.151 6.517-20.659 12.227-20.659 1.364 0-11.118 8.722-21.431 19.585-21.431 10.863 0 19.805 8.816 19.805 19.679z"/>
+</svg>

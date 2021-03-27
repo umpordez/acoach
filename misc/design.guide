@@ -1,0 +1,13 @@
+- Font: Nunito
+    Extra Light 200,
+    Extra Light 200 Italic,
+    Semi-Bold 600,
+    Black 900
+
+- Font: Halant
+    Light 300,
+    Bold 700
+
+icons:
+    - https://commons.wikimedia.org/wiki/Tango_icons
+    - to use download svg and optimize with: https://jakearchibald.github.io/svgomg/

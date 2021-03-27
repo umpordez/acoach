@@ -1,0 +1,26 @@
+{
+    "name": "acoach",
+    "version": "0.0.1",
+    "description": "acoach nodejs",
+    "main": "its my club, your club, ours club :)",
+    "dependencies": {
+        "argument-validator": "",
+        "bcrypt": "",
+        "body-parser": "",
+        "dotenv": "",
+        "express": "",
+        "jsonwebtoken": "",
+        "knex": "",
+        "nodemailer": "",
+        "pg": ""
+    },
+    "devDependencies": {
+        "eslint": "",
+        "mocha": ""
+    },
+    "scripts": {
+        "test": "../scripts/run-tests.sh",
+        "migrate": "../scripts/migrate-up.sh"
+    },
+    "author": "Deividy Metheler Zachetti"
+}
