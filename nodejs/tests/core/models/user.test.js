@@ -15,17 +15,22 @@ describe('Tests Model User', async() => {
 
     it('create / login / and delete user', async() => {
         const userModel = new UserModel(ctx);
-        const user = await userModel.create(
-            'testd', 'testd@ligeiro.club', 'overlord', '123'
+        const email = `test_${new Date().getTime()}@ligeiro.club`;
+
+        const { user, account } = await userModel.create(
+            'testd',
+            email,
+            'coach',
+            '123'
         );
 
         assert(user);
 
-        await userModel.login('testd@ligeiro.club', '123');
+        await userModel.login(email, '123');
         assert.rejects(() =>
-            userModel .login('testd@ligeiro.club', '1234'),
+            userModel .login(email, '1234'),
             /invalid password/);
 
-        await ctx.db.users.deleteOne({ id: user.id });
+        await userModel.delete(user.id, account.id);
     });
 });

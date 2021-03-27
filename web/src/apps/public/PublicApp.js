@@ -6,6 +6,7 @@ import { getCurrentUiMode, changeUiMode } from '../../theme';
 
 import LoginBox from './LoginBox';
 import ForgetPasswordBox from './ForgetPasswordBox';
+import SignUpBox from './SignUpBox';
 
 let isInCrazyMode = false;
 function PublicApp() {
@@ -27,6 +28,10 @@ function PublicApp() {
 
                 <Route path='/forget'>
                     <ForgetPasswordBox />
+                </Route>
+
+                <Route path='/sign-up'>
+                    <SignUpBox />
                 </Route>
 
                 <Route path='/'>

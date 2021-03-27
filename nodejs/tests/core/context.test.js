@@ -5,7 +5,7 @@ const assert = require('assert');
 
 describe('Tests Context', () => {
     it('sanity check', () => {
-        assert(new Context(0));
+        assert(new Context(0, 0));
     });
 
     it('static .get', async() => {

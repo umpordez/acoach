@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { validations, useFocus, randomNumber } from '../../utils';
+import { validations, randomNumber } from '../../utils';
 import { UserContext } from '../../context';
 
 import RedirectBox from './RedirectBox';
@@ -11,12 +11,9 @@ import ajaxAdapter from '../../ajaxAdapter';
 
 const { notFoundMessages } = validations;
 
-async function submitLogin(user) {
-    if (!user.email) { return { error: 'Duh, preencha o e-mail!' }; }
-    if (!user.password) { return { error: 'Duh, preencha a senha!' }; }
-
+async function submitSignUp(user) {
     try {
-        const res = await ajaxAdapter.post('/login', user);
+        const res = await ajaxAdapter.post('/sign-up', user);
         console.log(res);
     } catch(ex) {
         if (/not found/i.test(ex.message)) {
@@ -32,16 +29,14 @@ async function submitLogin(user) {
     return { success: true };
 }
 
-export default function LoginBox() {
+export default function SignUpBox() {
+    const [ name, setName ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ errorMessage, setErrorMessage ] = useState('');
 
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
     const { setUser } = useContext(UserContext);
-
-    const [ emailRef, setEmailFocus ] = useFocus();
-    const [ passwordRef, setPasswordFocus ] = useFocus();
 
     if (isLoggedIn) {
         return <RedirectBox redirectUrl='/' redirectHandler={ () => {
@@ -50,25 +45,31 @@ export default function LoginBox() {
     }
 
     return <main className='box'>
-        <BoxHeader errorMessage={ errorMessage }>Identifique-se.</BoxHeader>
+        <BoxHeader errorMessage={ errorMessage }>Cadastre-se.</BoxHeader>
 
         <main>
-            <p>Entre com os seus dados abaixo:</p>
+            <p>Para cuidar bem de seus clientes, preencha os seus dados abaixo:</p>
             <form onSubmit={ async(ev) => {
                 ev.preventDefault();
 
-                const { error } = await submitLogin({ email, password });
+                const { error } = await submitSignUp({ email, password });
+
                 if (error) {
-                    if (validations.email(errorMessage)) {
-                        setEmailFocus();
-                    } else if (validations.password(errorMessage)) {
-                        setPasswordFocus();
-                    }
                     return setErrorMessage(error);
                 }
 
                 setIsLoggedIn(true);
             } } >
+                <input
+                    onChange={ ({ nativeEvent }) => {
+                        setName(nativeEvent.target.value);
+                    } }
+                    autoFocus={ true }
+                    autoComplete='name'
+                    placeholder='o seu nome aqui'
+                    value={ name }
+                    type='text' />
+
                 <input
                     onChange={ ({ nativeEvent }) => {
                         setEmail(nativeEvent.target.value
@@ -77,33 +78,24 @@ export default function LoginBox() {
                             .replace(/[^\w\d_\-@.]/g,'')
                         );
                     } }
-                    className={ validations.email(errorMessage) ? 'invalid' : '' }
-                    autoFocus={ true }
                     autoComplete='email'
                     placeholder='o seu e-mail de acesso'
-                    ref={ emailRef }
                     value={ email }
-                    id='email'
                     type='email' />
 
                 <input
                     onChange={ ({ nativeEvent }) => {
                         setPassword(nativeEvent.target.value);
                     } }
-                    className={ validations.password(errorMessage) ? 'invalid' : '' }
-                    autoComplete='current-password'
-                    placeholder='a sua senha em nosso club'
-                    ref={ passwordRef }
+                    autoComplete='new-password'
+                    placeholder='a sua senha em acoach'
                     value={ password }
-                    id='pass'
                     type='password' />
 
                 <button type='submit'>acessar</button>
             </form>
 
-            <Link to={ '/forget' }>forgot my password... help?</Link>
-            <br />
-            <Link to={ '/sign-up' }>sign up</Link>
+            <Link to={ '/' }>ei, eu tenho um login!</Link>
         </main>
     </main>;
 }

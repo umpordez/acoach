@@ -28,7 +28,7 @@ describe('Tests Db', () => {
         const user = await db.users.insertOne({
             name: 'Test user',
             is_active: false,
-            email: 'test123@ligeiro.club',
+            email: `test_${new Date().getTime()}@ligeiro.club`,
             password: '123',
             role: 'user'
         });
@@ -39,7 +39,7 @@ describe('Tests Db', () => {
         assert(await db.users.tryOneRow({ id: user.id }));
         assert(await db.users.oneRow({ id: user.id }));
 
-        await db.users.deleteOne({ id: user.id });
+        await db.users.deleteAll({ id: user.id });
         assert(!await db.users.tryOneRow({ id: user.id }));
     });
 });

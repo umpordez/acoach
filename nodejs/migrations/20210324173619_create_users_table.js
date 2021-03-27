@@ -47,6 +47,7 @@ exports.up = function(knex) {
         CREATE SEQUENCE seq_clients;
         CREATE TABLE clients (
             id int NOT NULL CONSTRAINT pk_clients PRIMARY KEY DEFAULT nextval('seq_clients'),
+            account_id int not null constraint fk_clients_accounts references accounts(id),
 
             name text not null,
             email text not null,
@@ -62,7 +63,9 @@ exports.up = function(knex) {
             state text,
 
             company text,
-            utc_created_on timestamp NOT NULL CONSTRAINT df_clients_utc_created_on DEFAULT (now())
+            utc_created_on timestamp NOT NULL CONSTRAINT df_clients_utc_created_on DEFAULT (now()),
+
+            constraint uq_clients_email_account_id UNIQUE (account_id, email)
         );
         ALTER SEQUENCE seq_clients OWNED BY clients.id;
 
@@ -75,7 +78,6 @@ exports.up = function(knex) {
             feedback text,
             details text,
 
-            name text not null,
             utc_created_on timestamp NOT NULL CONSTRAINT df_client_reports_utc_created_on DEFAULT (now())
         );
         ALTER SEQUENCE seq_client_reports OWNED BY client_reports.id;

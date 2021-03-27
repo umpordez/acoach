@@ -26,7 +26,7 @@ class TableGateway {
             .where(whereObject);
     }
 
-    deleteOne(whereObject) {
+    deleteAll(whereObject) {
         V.object(whereObject);
         return this.knex(this.tableName).where(whereObject).del();
     }

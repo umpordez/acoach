@@ -122,12 +122,18 @@ function buildHandler(handler) {
             }
 
             req.userId = req.userId || (req.user && req.user.id);
+            req.accountId = req.accountId || (req.account && req.account.id);
+
             req.userInfo = { ip: req.ip, userAgent: req.get('user-agent') };
 
-            const context = new Context((req.user && req.user.id) || 0);
+            const context = new Context(
+                (req.user && req.user.id) || 0,
+                (req.account && req.account.id) || 0
+            );
 
             await context.loadDb();
             await context.loadUser();
+            await context.loadAccount();
 
             context.loadModels();
 

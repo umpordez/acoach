@@ -43,15 +43,80 @@ class UserModel extends ModelBase {
             is_active: true,
             confirmed_email: true, // fake it, until you make it :P
             token,
-            role,
+            role: 'user',
             password: hashedPassword
         };
 
-        return this.db.users.insertOne(userData);
+        const user = await this.db.users.insertOne(userData);
+        const account = await this.db.accounts.insertOne({ name });
+
+        await this.db.user_access.insertOne({
+            user_id: user.id,
+            account_id: account.id,
+            role
+        });
+
+        return { role, user, account }
     }
 
     async getUserByEmail(email) {
+        V.string(email);
+
         return this.db.users.oneRow({ email });
+    }
+
+    async delete(userId, accountId) {
+        V.number(userId);
+        V.number(accountId);
+
+        await this.db.user_access.deleteAll({
+            user_id: userId
+        });
+
+        await this.db.noData(`
+            delete from
+                client_report_tasks
+            where
+                report_id in (
+                    select
+                        id
+                    from
+                        client_reports
+                    where
+                        client_id in (
+                            select
+                                id
+                            from
+                                clients
+                            where
+                                account_id = ${accountId}
+                        )
+                );
+
+            delete from
+                client_reports
+            where
+                client_id in (
+                    select
+                        id
+                    from
+                        clients
+                    where
+                        account_id = ${accountId}
+                );
+        `);
+
+        await this.db.clients.deleteAll({
+            account_id: accountId
+        });
+
+        await this.db.accounts.deleteAll({ id: accountId });
+
+        await this.db.accounts.deleteAll({
+            id: accountId
+        });
+
+        await this.db.users.deleteAll({ id: userId });
     }
 }
 

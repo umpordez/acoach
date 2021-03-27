@@ -17,18 +17,11 @@ const notFoundMessages = [
     'Dados inválidos.'
 ];
 
-function isEmailInvalid(errorMessage) {
-    return /mail/.test(errorMessage) || notFoundMessages.includes(errorMessage);
-}
-
-function isPasswordInvalid (errorMessage) {
-    return/senha/.test(errorMessage) || notFoundMessages.includes(errorMessage);
-}
-
 const validations = {
     notFoundMessages,
-    email: isEmailInvalid,
-    password: isPasswordInvalid
+
+    email(email) { return /\S+@\S+\.\w$/.test(email); },
+    password(pass) { return pass.length > 3; }
 };
 
 export { useFocus, randomNumber, validations };

@@ -23,9 +23,12 @@ for (const file of files) {
 }
 
 class Context {
-    constructor(userId) {
+    constructor(userId, accountId = 0) {
         V.number(userId, 'userId');
+        V.number(accountId, 'accountId');
+
         this.userId = userId;
+        this.accountId = accountId;
     }
 
     loadModels() {
@@ -46,11 +49,21 @@ class Context {
         return db;
     }
 
-    async loadUser() {
-        if (this.user || !this.userId) { return this.user; }
+    async loadAccount() {
+        if (this._account || !this.accountId) { return this._account; }
         await this.loadDb();
 
-        const user = this.db.users.oneRow({ id: this.userId });
+        const account = await this.db.accounts.oneRow({ id: this.accountId });
+        this._account = account;
+
+        return account;
+    }
+
+    async loadUser() {
+        if (this.user || !this.userId) { return this._user; }
+        await this.loadDb();
+
+        const user = await this.db.users.oneRow({ id: this.userId });
         this._user = user;
 
         return user;
