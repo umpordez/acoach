@@ -20,20 +20,37 @@ async function getTokenForUser(user, rememberme) {
 }
 
 module.exports = function(app) {
+    app.post('/sign-up',
+        bodyParser.json(),
+        buildHandler(async function(req, res) {
+            const name = req.string('name');
+            const email = req.string('email');
+            const password = req.string('password');
+
+            const { user, account } = await req.ctx.user.create(
+                name,
+                email,
+                'coach',
+                password
+            );
+
+            req.user = user;
+            res.status(200).json({
+                account,
+                user: _.pick(user,
+                    'id', 'name', 'karma', 'email', 'role', 'dark_mode'
+                ),
+
+                token: await getTokenForUser(user, true)
+            });
+        }));
+
     app.post('/login',
         bodyParser.json(),
         buildHandler(async function(req, res) {
             try {
                 const email = req.string('email');
                 const password = req.string('password');
-
-                if (!email || !password) {
-                    return res.status(400).json({
-                        validationError: true,
-                        msg: 'Invalid request'
-                    });
-                }
-
                 const user = await req.ctx.user.login(email, password);
 
                 if (!user.confirmed_email) {
@@ -44,7 +61,6 @@ module.exports = function(app) {
                 }
 
                 req.user = user;
-
                 res.status(200).json({
                     user: _.pick(user,
                         'id', 'name', 'karma', 'email', 'role', 'dark_mode'),
