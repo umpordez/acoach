@@ -23,8 +23,20 @@ class UserModel extends ModelBase {
         const user = await this.getUserByEmail(email);
         const isSamePassword = await bcrypt.compare(password, user.password);
 
-        if (!isSamePassword) { throw new Error('invalid passsword'); }
-        return user;
+        if (!isSamePassword) {
+            throw new Error('invalid passsword');
+        }
+
+        const userAccess = await this.db.user_access.oneRow({
+            user_id: user.id
+        });
+
+        const account = await this.db.accounts.oneRow({
+            id: userAccess.account_id
+        });
+
+        const role = user.role === 'overlord' ? 'overlord' : userAccess.role;
+        return { role, user, account };
     }
 
     async create(name, email, role = 'coach', password) {

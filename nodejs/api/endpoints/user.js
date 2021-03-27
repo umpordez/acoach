@@ -37,9 +37,16 @@ module.exports = function(app) {
             req.user = user;
             res.status(200).json({
                 account,
-                user: _.pick(user,
-                    'id', 'name', 'karma', 'email', 'role', 'dark_mode'
-                ),
+                user: {
+                    ..._.pick(user,
+                        'id',
+                        'name',
+                        'karma',
+                        'email',
+                        'dark_mode'
+                    ),
+                    role: 'coach'
+                },
 
                 token: await getTokenForUser(user, true)
             });
@@ -51,7 +58,7 @@ module.exports = function(app) {
             try {
                 const email = req.string('email');
                 const password = req.string('password');
-                const user = await req.ctx.user.login(email, password);
+                const { role, user, account } = await req.ctx.user.login(email, password);
 
                 if (!user.confirmed_email) {
                     return res.status(400).json({
@@ -62,6 +69,8 @@ module.exports = function(app) {
 
                 req.user = user;
                 res.status(200).json({
+                    account,
+                    role,
                     user: _.pick(user,
                         'id', 'name', 'karma', 'email', 'role', 'dark_mode'),
 

@@ -40,7 +40,7 @@ export default function SignUpBox() {
 
     if (isLoggedIn) {
         return <RedirectBox redirectUrl='/' redirectHandler={ () => {
-            setUser({ role: 'coach' });
+            setUser();
         } } />
     }
 
@@ -52,7 +52,7 @@ export default function SignUpBox() {
             <form onSubmit={ async(ev) => {
                 ev.preventDefault();
 
-                const { error } = await submitSignUp({ email, password });
+                const { error } = await submitSignUp({ name, email, password });
 
                 if (error) {
                     return setErrorMessage(error);

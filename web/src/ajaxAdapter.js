@@ -23,7 +23,17 @@ async function doRequest(url, method, body, headers) {
 
         if (response.ok) {
             if (/json/.test(headers.Accept)) {
-                return response.json();
+                const json = await response.json();
+
+                if (json.token) {
+                    localStorage.setItem('jwtToken', json.token);
+
+                    localStorage.setItem('user', JSON.stringify(json.user));
+                    localStorage.setItem('account', JSON.stringify(json.account));
+                    localStorage.setItem('role', json.role);
+                }
+
+                return json;
             }
 
             return response;

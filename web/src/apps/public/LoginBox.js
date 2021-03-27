@@ -45,7 +45,7 @@ export default function LoginBox() {
 
     if (isLoggedIn) {
         return <RedirectBox redirectUrl='/' redirectHandler={ () => {
-            setUser({ role: 'coach' });
+            setUser();
         } } />
     }
 

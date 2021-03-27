@@ -1,10 +1,40 @@
 import React, { createContext, useState } from 'react';
+import logger from './logger';
+
 const UserContext = createContext();
 
-function UserProvider({ children }) {
-    const [ user, setUser ] = useState();
+function getUserFromLocalStorage() {
+    try {
+        const userFromLocalStorageString = localStorage.getItem('user');
 
-    return <UserContext.Provider value={ { user, setUser } }>
+        if (userFromLocalStorageString) {
+            const userFromLocalStorage = JSON.parse(userFromLocalStorageString);
+            const account = JSON.parse(localStorage.getItem('account'));
+            const role = localStorage.getItem('role');
+
+            userFromLocalStorage.account = account;
+            userFromLocalStorage.role = role;
+
+            return userFromLocalStorage;
+        }
+    } catch(ex) {
+        logger.error(ex);
+    }
+
+    return null;
+}
+
+function UserProvider({ children }) {
+    const [ user, setUser ] = useState(getUserFromLocalStorage());
+
+    return <UserContext.Provider value={ {
+        user,
+        setUser(_user) {
+            if (_user) { return setUser(_user); }
+
+            setUser(getUserFromLocalStorage());
+        }
+    } }>
         { children }
     </UserContext.Provider>;
 }
