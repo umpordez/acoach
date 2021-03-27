@@ -1,42 +1,55 @@
-import React from 'react';
+import React, { useContext } from 'react';
 
 import {
-    BrowserRouter as Router, Link
+    BrowserRouter as Router, Link, Route
 } from 'react-router-dom';
 
-function Sidebar() {
-    return <aside>
-        <nav>
-            <ul>
-                <li><Link to={ '/home' }>home</Link></li>
-                <li><Link to={ '/clients' }>clients</Link></li>
-            </ul>
-        </nav>
-    </aside>;
-}
+import { UserContext } from '../../context';
 
+import CoachHome from './CoachHome';
+import CoachClientAdd from './CoachClientAdd';
+import CoachClients from './CoachClients';
 
 function Logo() {
     return <h1>acoach</h1>
 }
 
 function CoachApp() {
+    const { setUser } = useContext(UserContext);
+
     return <main className='full'>
         <Router>
-            <Sidebar />
-
             <main className='body'>
                 <header>
                     <Logo />
                     <nav>
                         <ul>
-                            <li>@deividy</li>
+                            <li><Link to={ '/' }>home</Link></li>
+                            <li><Link to={ '/clients' }>clients</Link></li>
+
+                            <li><span onClick={ () => {
+                                localStorage.clear();
+                                setUser();
+                            } } className='link'>logout</span></li>
                         </ul>
                     </nav>
                 </header>
 
-                <footer>
 
+                <Route path='/clients/add'>
+                    <CoachClientAdd />
+                </Route>
+
+                <Route exact path='/clients'>
+                    <CoachClients />
+                </Route>
+
+                <Route path='/'>
+                    <CoachHome />
+                </Route>
+
+                <footer>
+                    <small>from speedy</small>
                 </footer>
             </main>
         </Router>

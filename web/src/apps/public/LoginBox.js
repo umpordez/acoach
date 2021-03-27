@@ -59,11 +59,6 @@ export default function LoginBox() {
 
                 const { error } = await submitLogin({ email, password });
                 if (error) {
-                    if (validations.email(errorMessage)) {
-                        setEmailFocus();
-                    } else if (validations.password(errorMessage)) {
-                        setPasswordFocus();
-                    }
                     return setErrorMessage(error);
                 }
 
@@ -77,7 +72,6 @@ export default function LoginBox() {
                             .replace(/[^\w\d_\-@.]/g,'')
                         );
                     } }
-                    className={ validations.email(errorMessage) ? 'invalid' : '' }
                     autoFocus={ true }
                     autoComplete='email'
                     placeholder='o seu e-mail de acesso'
@@ -90,7 +84,6 @@ export default function LoginBox() {
                     onChange={ ({ nativeEvent }) => {
                         setPassword(nativeEvent.target.value);
                     } }
-                    className={ validations.password(errorMessage) ? 'invalid' : '' }
                     autoComplete='current-password'
                     placeholder='a sua senha em nosso club'
                     ref={ passwordRef }

@@ -8,10 +8,12 @@ const jwtSignPromise = util.promisify(jwt.sign);
 const { HTTP_SECRET } = process.env;
 const { buildHandler } = require('../utils');
 
-async function getTokenForUser(user, rememberme) {
+async function getTokenForUser(user, account, role, rememberme) {
     const tokenData = {
         userId: user.id,
+        accountId: account.id,
         utcLastLogon: user.utcLastLogon,
+        role,
         rememberme
     };
     const token = await jwtSignPromise(tokenData, HTTP_SECRET);
@@ -48,7 +50,7 @@ module.exports = function(app) {
                     role: 'coach'
                 },
 
-                token: await getTokenForUser(user, true)
+                token: await getTokenForUser(user, account, role, true)
             });
         }));
 
@@ -74,7 +76,7 @@ module.exports = function(app) {
                     user: _.pick(user,
                         'id', 'name', 'karma', 'email', 'role', 'dark_mode'),
 
-                    token: await getTokenForUser(user, true)
+                    token: await getTokenForUser(user, account, role, true)
                 });
             } catch (ex) {
                 if ((/Invalid|find login|oneRow/).test(ex.message)) {

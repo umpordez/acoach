@@ -27,6 +27,7 @@ module.exports = function(app) {
     };
 
     require('./endpoints/user')(app);
+    require('./endpoints/account')(app);
 
     app.get = _get;
     app.post = _post;
