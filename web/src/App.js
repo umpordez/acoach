@@ -18,18 +18,18 @@ function App() {
     const { user } = useContext(UserContext);
 
     if (user && user.role === 'coach') {
-        return <CoachApp />
+        return <CoachApp />;
     }
 
     if (user && user.role === 'client') {
-        return <ClientApp />
+        return <ClientApp />;
     }
 
     if (user && user.role === 'overlord') {
-        return <OverlordApp />
+        return <OverlordApp />;
     }
 
-    return <PublicApp />
+    return <PublicApp />;
 }
 
 function Wrapper() { return <UserProvider><App /></UserProvider>; }
