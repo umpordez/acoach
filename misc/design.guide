@@ -7,7 +7,3 @@
 - Font: Halant
     Light 300,
     Bold 700
-
-icons:
-    - https://commons.wikimedia.org/wiki/Tango_icons
-    - to use download svg and optimize with: https://jakearchibald.github.io/svgomg/
