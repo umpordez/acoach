@@ -3,7 +3,6 @@ import {
     BrowserRouter as Router, Switch, Route, Link, Redirect
 } from 'react-router-dom';
 
-import { SystemLockScreen, DialogAccept, ProcessStop } from '../../svgs';
 import { useFocus, randomNumber } from '../../utils';
 import { getCurrentUiMode, changeUiMode } from '../../theme';
 import { UserContext } from '../../context';
@@ -61,7 +60,6 @@ function RedirectBox({
 
     return <main className='box'>
         <header>
-            <DialogAccept />
             <h2>{ children }</h2>
         </header>
         <main>
@@ -83,13 +81,11 @@ function RedirectBox({
 function BoxHeader({ errorMessage, children }) {
     if (errorMessage) {
         return <header>
-            <ProcessStop />
             <h2>{ errorMessage }</h2>
         </header>;
     }
 
     return <header>
-        <SystemLockScreen />
         <h2>{ children }</h2>
     </header>
 

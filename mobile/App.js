@@ -11,7 +11,7 @@ import MainAppLoading from './components/MainAppLoading';
 import PublicApp from './apps/public/PublicApp';
 import CoachApp from './apps/coach/CoachApp';
 import OverlordApp from './apps/overlord/OverlordApp';
-import ClientApp from './apps/overlord/ClientApp';
+import ClientApp from './apps/client/ClientApp';
 
 import { AppearanceProvider } from 'react-native-appearance';
 import { UserProvider, UserContext } from './context';

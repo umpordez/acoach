@@ -9,21 +9,21 @@
 // themes
 body {
     --main-alert-color: red;
-    --main-bg-color: black;
-    --main-text-color: white;
-    --secondary-text-color: #F4F2F0;
-    --main-opacity: .9;
-    --main-highlight-color: #b61eae;
-    --main-shadow-color: rgba(182, 30, 174, .2);
-}
-body.contrast {
-    --main-alert-color: red;
     --main-bg-color: white;
     --main-text-color: black;
     --secondary-text-color: #040200;
     --main-opacity: .9;
-    --main-highlight-color: #b61eae;
-    --main-shadow-color: rgba(182, 30, 174, .2);
+    --main-highlight-color: #444;
+    --main-shadow-color: rgba(182, 182, 182, .2);
+}
+body.contrast {
+    --main-alert-color: red;
+    --main-bg-color: black;
+    --main-text-color: white;
+    --secondary-text-color: #F4F2F0;
+    --main-opacity: .9;
+    --main-highlight-color: #F4F2F0;
+    --main-shadow-color: rgba(182, 182, 182, .2);
 }
 
 body, html, #root {
