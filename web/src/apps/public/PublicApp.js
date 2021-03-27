@@ -170,8 +170,7 @@ function LoginBox() {
 
             <Link to={ '/forget' }>forgot my password... help?</Link>
             <br />
-            <a href='https://umpordez.com'
-                rel='noreferrer' target='_blank'>where am I?</a>
+            <Link to={ '/sign-in' }>sign in</Link>
         </main>
     </main>;
 }
