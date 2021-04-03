@@ -4,7 +4,7 @@ acoach! ([input your name suggestion here](https://github.com/umpordez/acoach/is
 
 Welcome to our monorepo (:
 
-For contributing guidelines, please check [CONTRIBUTING.md](https://github.com/umpordez/acoach/blob/master/CONTRIBUTING.md) or [CODE.md](https://github.com/umpordez/acoach/blob/master/CODE.md) for coding styles.
+For contributing guidelines, please check [CONTRIBUTING.md](https://github.com/umpordez/acoach/blob/main/CONTRIBUTING.md) or [CODE.md](https://github.com/umpordez/acoach/blob/main/CODE.md) for coding styles.
 
 ## Database
 
@@ -17,7 +17,7 @@ We use PostgreSQL for database queries, to install:
 After install PostgreSQL create a database;
 
 ```shell
-➜  acoach git:(master) ✗ psql
+➜  acoach git:(main) ✗ psql
 psql (12.2)
 Type "help" for help.
 
@@ -39,6 +39,8 @@ you can just run `knex migrate:up`, our use the scripts in `scripts/` path.
 ---
 
 ## Our path
+
+Hello darkness, my old friend.
 
 #### `misc/`
 
