@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { StatusBar } from 'expo-status-bar';
-import { useTheme } from '../../assets/themes';
+import { useTheme } from '../../theme';
 
 import Display from '../../components/Display';
 import LoginScreen from './LoginScreen';
