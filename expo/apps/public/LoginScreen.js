@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
-
 import { View, StyleSheet } from 'react-native';
-import { H1, P } from '../../components/text';
+import PropTypes from 'prop-types';
+
+import { Link, H1, P } from '../../components/text';
 import Input from '../../components/Input';
 import Display from '../../components/Display';
 
 import Button from '../../components/Button';
 
-function LoginScreen() {
+function LoginScreen({ navigation }) {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
 
@@ -42,6 +43,12 @@ function LoginScreen() {
                 autoCapitalize='none'
                 placeholder='a sua senha de acesso' />
 
+            <View style={ { marginBottom: 10, alignItems: 'flex-end' } }>
+                <Link style={ { fontSize: 13 } } onPress={ () => {
+                    navigation.navigate('ForgetPassword');
+                } }>esqueci minha senha</Link>
+            </View>
+
             <Button>
                 acessar sua conta
             </Button>
@@ -51,10 +58,15 @@ function LoginScreen() {
 
 export default LoginScreen;
 
+LoginScreen.propTypes = {
+    navigation: PropTypes.object.isRequired
+};
+
 const styles = StyleSheet.create({
     container: {
+        flex: 1,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'flex-start'
     },
 
     loginBox: {

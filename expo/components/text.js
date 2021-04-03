@@ -78,7 +78,7 @@ Span.propTypes = {
 
 function Link({ children, style, onPress }) {
     return <TouchableOpacity onPress={ onPress }>
-        <Span { ...style }>{ children }</Span>
+        <Span style={ { ...style } }>{ children }</Span>
     </TouchableOpacity>
 }
 
