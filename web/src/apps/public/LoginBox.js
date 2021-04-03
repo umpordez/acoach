@@ -6,14 +6,18 @@ import { UserContext } from '../../context';
 
 import RedirectBox from './RedirectBox';
 import BoxHeader from './BoxHeader';
-
 import ajaxAdapter from '../../ajaxAdapter';
 
 const { notFoundMessages } = validations;
 
 async function submitLogin(user) {
-    if (!user.email) { return { error: 'Duh, preencha o e-mail!' }; }
-    if (!user.password) { return { error: 'Duh, preencha a senha!' }; }
+    if (!user.email) {
+        return { error: 'Duh, preencha o e-mail!', field: 'email' };
+    }
+
+    if (!user.password) {
+        return { error: 'Duh, preencha a senha!', field: 'password' };
+    }
 
     try {
         const res = await ajaxAdapter.post('/login', user);
@@ -35,7 +39,7 @@ async function submitLogin(user) {
 export default function LoginBox() {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-    const [ errorMessage, setErrorMessage ] = useState('');
+    const [ errorObject, setErrorObject ] = useState(null);
 
     const [ isLoggedIn, setIsLoggedIn ] = useState(false);
     const { setUser } = useContext(UserContext);
@@ -49,17 +53,24 @@ export default function LoginBox() {
         } } />
     }
 
+    const errorField = errorObject && errorObject.field;
+
     return <main className='box'>
-        <BoxHeader errorMessage={ errorMessage }>Identifique-se.</BoxHeader>
+        <BoxHeader errorMessage={
+            errorObject && errorObject.message
+        }>Identifique-se.</BoxHeader>
 
         <main>
             <p>Entre com os seus dados abaixo:</p>
             <form onSubmit={ async(ev) => {
                 ev.preventDefault();
 
-                const { error } = await submitLogin({ email, password });
+                const { error, field } = await submitLogin({ email, password });
                 if (error) {
-                    return setErrorMessage(error);
+                    if (field === 'email') { setEmailFocus(); }
+                    if (field === 'password') { setPasswordFocus(); }
+
+                    return setErrorObject({ message: error, field });
                 }
 
                 setIsLoggedIn(true);
@@ -77,6 +88,7 @@ export default function LoginBox() {
                     placeholder='o seu e-mail de acesso'
                     ref={ emailRef }
                     value={ email }
+                    className={ errorField === 'email' ? 'invalid' : '' }
                     id='email'
                     type='email' />
 
@@ -88,6 +100,7 @@ export default function LoginBox() {
                     placeholder='a sua senha em nosso club'
                     ref={ passwordRef }
                     value={ password }
+                    className={ errorField === 'password' ? 'invalid' : '' }
                     id='pass'
                     type='password' />
 
