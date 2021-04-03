@@ -28,11 +28,12 @@ module.exports = function(app) {
             const name = req.string('name');
             const email = req.string('email');
             const password = req.string('password');
+            const role = 'coach';
 
             const { user, account } = await req.ctx.user.create(
                 name,
                 email,
-                'coach',
+                role,
                 password
             );
 
@@ -47,7 +48,7 @@ module.exports = function(app) {
                         'email',
                         'dark_mode'
                     ),
-                    role: 'coach'
+                    role
                 },
 
                 token: await getTokenForUser(user, account, role, true)

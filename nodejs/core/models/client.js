@@ -23,9 +23,9 @@ class ClientModel extends ModelBase {
 
         return this.db.client_reports.insertOne({
             client_id: clientId,
-            report: report || null,
-            feedback: feedback || null,
-            details: details || null
+            report: report,
+            feedback: feedback,
+            details: details
         });
     }
 
