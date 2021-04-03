@@ -19,6 +19,7 @@
         "mocha": ""
     },
     "scripts": {
+        "start": "node ./api/app.js",
         "test": "../scripts/run-tests.sh",
         "migrate": "../scripts/migrate-up.sh"
     },
