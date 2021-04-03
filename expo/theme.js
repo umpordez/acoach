@@ -12,6 +12,7 @@ const baseTheme = {
     h1FontSize: 22,
 
     headingFontFamily: 'Halant_700Bold',
+    buttonFontFamily: 'Nunito_200ExtraLight',
     textFontFamily: 'Nunito_200ExtraLight',
 
     input: {
@@ -21,6 +22,17 @@ const baseTheme = {
         borderRadius: 5,
         marginTop: 3,
         marginBottom: 4
+    },
+
+    button: {
+        borderRadius: 4,
+        padding: 10,
+        borderWidth: 1,
+        alignItems: 'center'
+    },
+
+    buttonText: {
+
     }
 };
 
@@ -28,15 +40,38 @@ const themes = {
     default: {
         mainBackgroundColor: '#ffffff',
         mainTextColor: '#222222',
-        inputPlaceholderTextColor: '#C4C2C0',
-        mainBorderColor: '#D4D2D0'
+        mainBorderColor: '#D4D2D0',
+        buttonColors: {
+            default: {
+                background: '#F4F2F0',
+                text: '#000',
+                border: '#D4D2D0'
+            }
+        },
+        inputColors: {
+            background: '#F4F2F0',
+            text: '#000',
+            placeholderTextColor: '#C4C2C0',
+        }
     },
 
     defaultDark: {
         mainBackgroundColor: '#000',
         mainTextColor: '#F4F2F0',
-        inputPlaceholderTextColor: '#C4C4C4',
-        mainBorderColor: '#D4D4D4'
+        mainBorderColor: '#D4D4D4',
+
+        buttonColors: {
+            default: {
+                background: '#444',
+                text: '#F4F2F0'
+            }
+        },
+
+        inputColors: {
+            background: '#444',
+            text: '#FFF',
+            placeholderTextColor: '#C4C4C4'
+        }
     }
 };
 

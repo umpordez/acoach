@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Text } from 'react-native';
-import { useTheme } from '../assets/themes';
+import { useTheme } from '../theme';
 
 function LText({ children, style }) {
     const { theme } = useTheme();

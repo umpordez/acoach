@@ -5,6 +5,8 @@ import { H1, P } from '../../components/text';
 import Input from '../../components/Input';
 import Display from '../../components/Display';
 
+import Button from '../../components/Button';
+
 function LoginScreen() {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
@@ -39,6 +41,10 @@ function LoginScreen() {
                 type='password'
                 autoCapitalize='none'
                 placeholder='a sua senha de acesso' />
+
+            <Button>
+                acessar sua conta
+            </Button>
         </View>
     </Display>
 }

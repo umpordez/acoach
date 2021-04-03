@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { SafeAreaView } from 'react-native';
-import { useTheme } from '../assets/themes';
+import { useTheme } from '../theme';
 
 export default function Display({ children, style }) {
     const { theme } = useTheme();
