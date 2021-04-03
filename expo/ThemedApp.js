@@ -2,6 +2,8 @@ import { randomNumber } from './utils';
 import { useTheme } from './theme';
 
 let isInCrazyMode = false;
+let isFirstChange = true;
+
 const intervals = [];
 function ThemedApp({ children }) {
     const { mode, toggleTheme } = useTheme();
@@ -10,13 +12,17 @@ function ThemedApp({ children }) {
     function setNextUiMode() {
         toggleTheme();
 
-        if (isInCrazyMode || randomNumber(250, 500) === 420) {
+        if (!isFirstChange && (
+            isInCrazyMode || randomNumber(250, 500) === 420)
+        ) {
             isInCrazyMode = true;
             intervals.push(setInterval(() => { toggleTheme(); }, 500));
 
             setTimeout(() => {
-                alert('ENOUGH.');
+                if (!isInCrazyMode) { return; }
+
                 isInCrazyMode = false;
+                alert('ENOUGH.');
 
                 let idx = intervals.length;
                 while(idx--) {
@@ -25,6 +31,8 @@ function ThemedApp({ children }) {
             }, 5000);
             return;
         }
+
+        isFirstChange = true;
     }
 
     return children({ nextModeText, setNextUiMode });
