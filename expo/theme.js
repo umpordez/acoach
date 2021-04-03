@@ -41,13 +41,16 @@ const themes = {
         mainBackgroundColor: '#ffffff',
         mainTextColor: '#222222',
         mainBorderColor: '#D4D2D0',
+
         buttonColors: {
             default: {
                 background: '#F4F2F0',
                 text: '#000',
                 border: '#D4D2D0'
             }
+
         },
+
         inputColors: {
             background: '#F4F2F0',
             text: '#000',
@@ -63,7 +66,8 @@ const themes = {
         buttonColors: {
             default: {
                 background: '#444',
-                text: '#F4F2F0'
+                text: '#F4F2F0',
+                border: '#424242'
             }
         },
 

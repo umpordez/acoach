@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 import { useTheme } from '../theme';
 
 function LText({ children, style }) {
@@ -76,4 +76,16 @@ Span.propTypes = {
     style: PropTypes.object
 };
 
-export { H1, H2, H3, P, Span };
+function Link({ children, style, onPress }) {
+    return <TouchableOpacity onPress={ onPress }>
+        <Span { ...style }>{ children }</Span>
+    </TouchableOpacity>
+}
+
+Link.propTypes = {
+    children: PropTypes.any,
+    style: PropTypes.object,
+    onPress: PropTypes.func
+};
+
+export { H1, H2, H3, P, Span, Link };
