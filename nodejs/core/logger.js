@@ -32,8 +32,8 @@ function info(msg, context) {
         params.push(util.inspect(context));
     }
 
-    params.push('');
-    console.log(params.join(''));
+    params.push('\n');
+    process.stdout.write(params.join(''));
 }
 
 function errorFn(error, context) {
@@ -44,8 +44,8 @@ function errorFn(error, context) {
 
     if (context) { params.push(util.inspect(context)); }
 
-    params.push('');
-    console.error(params.join('\n'));
+    params.push('\n');
+    process.stderr.write(params.join('\n'));
 }
 
 module.exports = { error: errorFn, info };
