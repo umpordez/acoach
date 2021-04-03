@@ -45,7 +45,7 @@ you can just run `knex migrate:up`, our use the scripts in `scripts/` path.
 `misc/` is where all sort of random things goes, like requirements, screenshots
 ideas... basically, something that is not code related and may be used in future.
 
-#### `mobile/`
+#### `expo/`
 
 Our mobile app is written in react-native (expo)
 
@@ -99,7 +99,7 @@ nodejs land
 node nodejs/api/app.js
 ```
 
-#### `web/`
+#### `reactjs/`
 
 In web interface we have a simple `create-react-app`, to run locally you can just:
 
