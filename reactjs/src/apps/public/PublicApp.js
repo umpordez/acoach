@@ -1,8 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-
-import { randomNumber } from '../../utils';
-import { getCurrentUiMode, changeUiMode } from '../../theme';
 
 import LoginBox from './LoginBox';
 import ForgetPasswordBox from './ForgetPasswordBox';

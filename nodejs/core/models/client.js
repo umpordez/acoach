@@ -1,5 +1,3 @@
-const crypto = require('crypto');
-const bcrypt = require('bcrypt');
 const V = require('argument-validator');
 
 const ModelBase = require('./base');

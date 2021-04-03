@@ -1,6 +1,4 @@
 const bodyParser = require('body-parser');
-const _ = require('lodash');
-
 const { demandAccountRoleMiddleware } = require('../middleware');
 const { buildHandler } = require('../utils');
 

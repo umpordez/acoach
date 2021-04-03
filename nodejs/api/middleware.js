@@ -25,11 +25,7 @@ async function demandValidJwtMiddleware(req, res, next) {
         await jwtVerifyPromise(token, HTTP_SECRET);
 
         const decoded = jwt.decode(token);
-        const { role, accountId, userId, rememberme, utcLastLogon } = decoded;
-
-        if (!rememberme && moment(utcLastLogon).isBefore(moment(), 'day')) {
-            // throw new Error('Login expired');
-        }
+        const { role, accountId, userId } = decoded;
 
         req.userId = Number(userId);
         req.accountId = Number(accountId);

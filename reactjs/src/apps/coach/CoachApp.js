@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 
 import {
     BrowserRouter as Router, Link, Route, Switch
 } from 'react-router-dom';
 
 import { UserContext } from '../../context';
-import { getCurrentUiMode, changeUiMode } from '../../theme';
 
 import CoachHome from './CoachHome';
 import CoachClientAdd from './CoachClientAdd';
