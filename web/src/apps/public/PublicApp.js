@@ -7,61 +7,38 @@ import { getCurrentUiMode, changeUiMode } from '../../theme';
 import LoginBox from './LoginBox';
 import ForgetPasswordBox from './ForgetPasswordBox';
 import SignUpBox from './SignUpBox';
+import ThemedApp from '../../ThemedApp';
 
-let isInCrazyMode = false;
 function PublicApp() {
-    const [ uiMode, setUiMode ] = useState(getCurrentUiMode());
+    return <ThemedApp>{ ({ setNextUiMode, nextModeText }) =>
+        <React.Fragment>
+            <Router>
+                <Switch>
+                    <Route path='/login'>
+                        <LoginBox />
+                    </Route>
 
-    useEffect(() => {
-        changeUiMode(uiMode);
-    });
+                    <Route path='/forget'>
+                        <ForgetPasswordBox />
+                    </Route>
 
-    const nextModeText = uiMode ? 'dark side' : 'contrast mode';
-    const nextUiMode = uiMode ? null : 'contrast';
+                    <Route path='/sign-up'>
+                        <SignUpBox />
+                    </Route>
 
-    return <React.Fragment>
-        <Router>
-            <Switch>
-                <Route path='/login'>
-                    <LoginBox />
-                </Route>
+                    <Route path='/'>
+                        <LoginBox />
+                    </Route>
+                </Switch>
+            </Router>
 
-                <Route path='/forget'>
-                    <ForgetPasswordBox />
-                </Route>
-
-                <Route path='/sign-up'>
-                    <SignUpBox />
-                </Route>
-
-                <Route path='/'>
-                    <LoginBox />
-                </Route>
-            </Switch>
-        </Router>
-
-        <footer>
-            <span onClick={ () => {
-                setUiMode(nextUiMode);
-
-                if (isInCrazyMode || randomNumber(0, 500) === 420) {
-                    isInCrazyMode = true;
-
-                    let i = 0;
-                    setInterval(() => {
-                        setUiMode((++i) % 2 && 'contrast');
-                    }, 500);
-                    return;
-                }
-
-                if (randomNumber(400, 500) === 420) {
-                    document.querySelector('#root > footer').innerHTML = `
-                        <span class='small'>aaaaand, it's gone.</span>
-                    `;
-                }
-            } } className='link small'>{ nextModeText }</span>
-        </footer>
-    </React.Fragment>
+            <footer>
+                <span
+                    onClick={ setNextUiMode }
+                    className='link small'>{ nextModeText }</span>
+            </footer>
+        </React.Fragment>
+    }</ThemedApp>
 }
 
 export default PublicApp;

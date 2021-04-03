@@ -7,23 +7,31 @@
 }
 
 // themes
-body {
+body.contrast {
     --main-alert-color: red;
     --main-bg-color: white;
     --main-text-color: black;
+    --secondary-bg-color: #F4F2F0;
     --secondary-text-color: #040200;
     --main-opacity: .9;
-    --main-highlight-color: #444;
+    --main-highlight-color: #D4D2D0;
     --main-shadow-color: rgba(182, 182, 182, .2);
+
+    --main-input-bg: #F4F2F0;
+    --main-input-text: #222;
 }
-body.contrast {
+body {
     --main-alert-color: red;
     --main-bg-color: black;
     --main-text-color: white;
+    --secondary-bg-color: #444;
     --secondary-text-color: #F4F2F0;
     --main-opacity: .9;
     --main-highlight-color: #F4F2F0;
     --main-shadow-color: rgba(182, 182, 182, .2);
+
+    --main-input-bg: #222;
+    --main-input-text: #F4F2F0;
 }
 
 body, html, #root {
@@ -65,27 +73,6 @@ p {
     background: var(--main-bg-color);
     color: var(--main-text-color);
     opacity: var(--main-opacity);
-}
-
-#root > main.full {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-main.full {
-    > aside {
-
-    }
-
-    > main.body {
-        flex: 1;
-
-        > footer {
-
-        }
-    }
 }
 
 main.box {
@@ -151,9 +138,9 @@ form {
         line-height: 1.15;
         font-size: 1rem;
 
-        background: var(--main-text-color);
-        border: 2px solid var(--main-text-color);
-        color: var(--main-bg-color);
+        background: var(--main-input-bg);
+        border: 2px solid var(--main-input-bg);
+        color: var(--main-input-text);
 
         -webkit-box-sizing: border-box;
         -moz-box-sizing: border-box;
@@ -176,7 +163,7 @@ form {
     }
 }
 
-button {
+button, a.btn {
     border-radius: .5rem;
     font-size: 1rem;
 
@@ -202,6 +189,39 @@ button {
     &:hover, &:active {
         background: var(--main-highlight-color);
         color: white;
+    }
+}
+
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+
+    th, td {
+        padding: .2rem .5rem;
+    }
+
+    thead {
+        th {
+            &:first-child {
+                border-radius: .3rem 0 0 0;
+            }
+            &:last-child {
+                border-radius: 0 .3rem 0 0;
+            }
+
+            text-align: left;
+            font-size: 1rem;
+            font-family: 'Halant', serif;
+            font-weight: normal;
+            background: var(--secondary-bg-color);
+        }
+    }
+
+    tbody {
+        td {
+            border: 1px solid var(--secondary-bg-color);
+        }
     }
 }
 

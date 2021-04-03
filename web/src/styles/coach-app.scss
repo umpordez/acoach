@@ -1,3 +1,31 @@
+#root > main.full {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+main.full {
+    > aside {
+
+    }
+
+    > main.body {
+        flex: 1;
+
+        > footer {
+
+        }
+    }
+
+    footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: .3rem 1rem;
+    }
+}
+
 main.body {
     display: flex;
     flex-direction: column;
@@ -5,6 +33,14 @@ main.body {
     > main.view {
         flex: 1;
         padding: 1rem;
+
+        > header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: .5rem;
+        }
     }
 
     footer {
@@ -15,6 +51,17 @@ main.body {
         display: flex;
         flex-direction: row;
         align-items: center;
+        background: var(--main-text-color);
+        color: var(--main-bg-color);
+
+        a, span {
+            color: var(--main-bg-color);
+        }
+
+        @include box-shadow(
+            5px 5px 3px var(--main-shadow-color),
+            -10px -10px 20px var(--main-shadow-color)
+        );
 
         h1 {
             margin-bottom: 0px;
@@ -24,6 +71,7 @@ main.body {
 
         nav {
             margin-left: 1rem;
+            width: 100%;
         }
 
         ul {
@@ -32,9 +80,14 @@ main.body {
             padding: 0;
             display: flex;
             flex-direction: row;
+            width: 100%;
 
             li {
                 margin: .5rem;
+
+                &:last-child {
+                    margin-left: auto;
+                }
             }
         }
     }
