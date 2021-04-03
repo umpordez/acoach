@@ -42,7 +42,7 @@ function changeUiMode(uiMode) {
         return;
     }
 
-    bodyElement.classList.toggle(uiMode);
+    bodyElement.className = uiMode;
 }
 
 

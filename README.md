@@ -1,4 +1,4 @@
-acoach! ([input your name suggestion here]())
+acoach! ([input your name suggestion here](https://github.com/umpordez/acoach/issues/2))
 ===
 
 
@@ -26,19 +26,38 @@ acoach=# CREATE DATABASE acoach;
 
 ---
 
+## Migrations / db creation
+
+We use [`knex migrations`](http://knexjs.org/#Migrations), so to create your db
+you can just run `knex migrate:up`, our use the scripts in `scripts/` path.
+
+```shell
+./scripts/migrate-up.sh
+```
+
+
+---
+
 ## Our path
 
-### scripts
-
-`scripts/` has some utilities scripts, like easy way to run `knex` inside
-`node_modules` and `run-tests.sh` to run all tests at once, easy pease.
-
-### misc
+#### `misc/`
 
 `misc/` is where all sort of random things goes, like requirements, screenshots
 ideas... basically, something that is not code related and may be used in future.
 
-### nodejs
+#### `mobile/`
+
+Our mobile app is written in react-native (expo)
+
+
+```shell
+cd mobile
+npm install
+npm start
+```
+
+
+#### `nodejs/`
 
 We currently have only one app server side written in Node.js, it lives in `nodejs/`
 and has a `package.json` that will be shared between the possible other apps
@@ -58,30 +77,29 @@ cp .env.sample .env
 vi .env
 ```
 
-#### api
+##### `nodejs/api/`
 
 the api app, is what will be receiving all requests from outside world, run it
 in the default port or change it in the `web/src/config.js` too.
 
 To run, simple call the `app.js` file;
 
+##### `nodejs/tests/`
+
+all our nodejs test cases lives here, we use `mocha` to run our tests in
+nodejs land
+
+#### `scripts/`
+
+`scripts/` has some utilities scripts, like easy way to run `knex` inside
+`node_modules` and `run-tests.sh` to run all tests at once, easy pease.
+
+
 ```shell
 node nodejs/api/app.js
 ```
 
-
-### Migrations / db creation
-
-We use [`knex migrations`](http://knexjs.org/#Migrations), so to create your db
-you can just run `knex migrate:up`, our use the scripts in `scripts/` path.
-
-```shell
-./scripts/migrate-up.sh
-```
-
-### UI
-
-#### Web
+#### `web/`
 
 In web interface we have a simple `create-react-app`, to run locally you can just:
 
@@ -91,13 +109,9 @@ npm install
 npm start
 ```
 
-#### Mobile
+--
 
-Our mobile app is written in react-native (expo)
+## License
 
 
-```shell
-cd mobile
-npm install
-npm start
-```
+Our little acoach is published under no-license, use it at your own will :)
