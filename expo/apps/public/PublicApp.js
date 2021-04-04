@@ -35,7 +35,7 @@ function PublicApp() {
                 <View style={ { alignItems: 'center', padding: 10 } }>
                     <Link onPress={ setNextUiMode }>{ nextModeText }</Link>
                 </View>
-                <StatusBar barStyle={ `${mode}-content` } />
+                <StatusBar style={ mode === 'dark' ? 'light' : 'dark' } />
             </Display>}
         </ThemedApp>
     </NavigationContainer>;
