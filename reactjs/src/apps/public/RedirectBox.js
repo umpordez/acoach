@@ -19,7 +19,7 @@ export default function RedirectBox({
         <header>
             <h2>{ children }</h2>
         </header>
-        <main>
+        <main style={ { paddingTop: 0 } }>
             { timer === 0 && <Redirect to={ redirectUrl } /> }
             <p>
                 <small>só pra não te redirecionar sem mais nem menos...</small>

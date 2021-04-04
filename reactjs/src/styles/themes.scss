@@ -1,26 +1,29 @@
 body {
     --main-alert-color: red;
-    --main-bg-color: black;
-    --main-text-color: white;
-    --secondary-bg-color: #444;
-    --secondary-text-color: #F4F2F0;
-    --main-opacity: .9;
-    --main-highlight-color: #F4F2F0;
-    --main-shadow-color: rgba(182, 182, 182, .2);
-
-    --main-input-bg: #222;
-    --main-input-text: #F4F2F0;
-}
-body.contrast {
-    --main-alert-color: red;
     --main-bg-color: white;
     --main-text-color: black;
     --secondary-bg-color: #F4F2F0;
     --secondary-text-color: #040200;
     --main-opacity: .9;
     --main-highlight-color: #A4A2A0;
+    --main-highlight-active-color: #222;
     --main-shadow-color: rgba(182, 182, 182, .2);
 
     --main-input-bg: #F4F2F0;
     --main-input-text: #222;
+}
+
+body.contrast {
+    --main-alert-color: red;
+    --main-bg-color: black;
+    --main-text-color: white;
+    --secondary-bg-color: #444;
+    --secondary-text-color: #F4F2F0;
+    --main-opacity: .9;
+    --main-highlight-color: #A4A2A0;
+    --main-highlight-active-color: #FFF;
+    --main-shadow-color: rgba(182, 182, 182, .2);
+
+    --main-input-bg: #222;
+    --main-input-text: #F4F2F0;
 }

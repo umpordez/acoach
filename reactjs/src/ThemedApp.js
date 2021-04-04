@@ -10,7 +10,7 @@ function ThemedApp({ children }) {
         changeUiMode(uiMode);
     });
 
-    const nextModeText = uiMode ? 'dark side' : 'contrast mode';
+    const nextModeText = uiMode ? 'light theme' : 'dark theme';
     const nextUiMode = uiMode ? null : 'contrast';
 
     function setNextUiMode() {
@@ -27,7 +27,14 @@ function ThemedApp({ children }) {
         }
 
         if (randomNumber(400, 500) === 420) {
-            document.querySelector('#root > footer').innerHTML = `
+            const element = document.querySelector('#root > footer');
+
+            if (!element) {
+                isInCrazyMode = true;
+                return;
+            }
+
+            element.innerHTML = `
                 <span class='small'>aaaaand, it's gone.</span>
             `;
         }

@@ -3,6 +3,9 @@ import ajaxAdapter from '../../ajaxAdapter';
 
 import { UserContext } from '../../context';
 
+import ReactQuill from 'react-quill'
+import 'react-quill/dist/quill.snow.css';
+
 async function submitClient(account, client) {
     if (!client.name) { return { error: 'Por favor, preencha o nome!' }; }
     if (!client.email) { return { error: 'Por favor, preencha o e-mail!' }; }
@@ -25,6 +28,7 @@ export default function CoachClientAdd() {
 
     const [ email, setEmail ] = useState('');
     const [ name, setName ] = useState('');
+    const [ description, setDescription ] = useState('');
 
     return <main className='view'>
         <h2>Adicionar novo cliente</h2>
@@ -50,7 +54,24 @@ export default function CoachClientAdd() {
                 placeholder='o e-mail de seu cliente'
                 value={ email } />
 
-            <button type='submit'>Salvar cliente</button>
+            <ReactQuill
+                modules={
+                    {
+                        toolbar: [
+                            [ 'bold', 'italic', 'underline', 'strike' ],
+                            [ 'link' ],
+                            [ 'clean'],
+                            [{ 'list': 'ordered'}, { 'list': 'bullet' }]
+                        ]
+                    }
+                }
+                placeholder='Descrição / observações de seu cliente'
+                value={ description }
+                onChange={ setDescription } />
+
+            <div style={ { marginTop: '1rem' } }>
+                <button type='submit'>Salvar cliente</button>
+            </div>
         </form>
     </main>;
 }

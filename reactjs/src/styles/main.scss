@@ -203,6 +203,44 @@ small, .small {
     font-size: .7rem;
 }
 
+.fa-icon-wrapper {
+    display: flex;
+    flex-direction: row;
+    .fa-icon {
+        margin: 0 .5rem;
+
+        a:hover, span.link:hover {
+            color: var(--main-highlight-active-color);
+
+        }
+    }
+}
+
+.quill > .ql-container > .ql-editor.ql-blank::before{
+    color: var(--secondary-text-color);
+}
+
+.quill .ql-container { min-height: 80px; }
+
+.ql-toolbar {
+    background: var(--secondary-bg-color);
+    border-radius:.5rem;
+
+    .ql-stroke {
+        fill: none;
+        stroke: var(--main-text-color);
+    }
+
+    .ql-fill {
+        fill: var(--main-text-color);
+        stroke: none;
+    }
+
+    .ql-picker {
+        color: var(--main-text-color);
+    }
+}
+
 @media (min-width: 700px) {
     main.box {
         @include box-shadow(

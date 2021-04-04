@@ -8,7 +8,7 @@ import { UserContext } from '../../context';
 
 import CoachHome from './CoachHome';
 import CoachClientAdd from './CoachClientAdd';
-import CoachClients from './CoachClients';
+import CoachClientList from './CoachClientList';
 
 import ThemedApp from '../../ThemedApp';
 
@@ -47,7 +47,7 @@ function CoachApp() {
                         </Route>
 
                         <Route exact path='/clients'>
-                            <CoachClients />
+                            <CoachClientList />
                         </Route>
 
                         <Route path='/'>
