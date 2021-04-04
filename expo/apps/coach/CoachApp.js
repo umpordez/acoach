@@ -25,19 +25,16 @@ function PublicApp() {
                     screenOptions={({ route }) => ({
                         tabBarIcon: function TabBarIcon({ color, size }) {
                             return <FontAwesome5
-                                name={ route.name === 'Tasks' ? 'tasks' : 'user-tie' }
+                                name={ route.name === 'tasks' ? 'tasks' : 'user-tie' }
                                 color={ color }
                                 size={ size } />
                     }})}
                     tabBarOptions={ {
                         showLabel: false,
-                        activeTintColor: theme.mainHighlightColor,
-                        activeBackgroundColor: theme.mainBackgroundColor,
-                        inactiveBackgroundColor: theme.mainBackgroundColor,
-                        inactiveTintColor: theme.mainTextColor,
+                        ...theme.tabBar
                     } }>
-                    <Tab.Screen name='Tasks' component={ HomeScreen } />
-                    <Tab.Screen name='@Deividy' component={ AccountScreen } />
+                    <Tab.Screen name='tasks' component={ HomeScreen } />
+                    <Tab.Screen name='me' component={ AccountScreen } />
                 </Tab.Navigator>
                 <StatusBar style={ mode === 'dark' ? 'light' : 'dark' } />
             </Display>}

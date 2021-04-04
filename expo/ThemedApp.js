@@ -7,7 +7,7 @@ let isFirstChange = true;
 const intervals = [];
 function ThemedApp({ children }) {
     const { mode, toggleTheme } = useTheme();
-    const nextModeText = mode === 'light' ? 'dark side' : 'contrast mode';
+    const nextModeText = mode === 'light' ? 'dark theme' : 'light theme';
 
     function setNextUiMode() {
         toggleTheme();

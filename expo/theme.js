@@ -43,6 +43,13 @@ const themes = {
         mainBorderColor: '#D4D2D0',
         mainHighlightColor: '#0066cc',
 
+        tabBar: {
+            activeTintColor: '#111',
+            activeBackgroundColor: '#ffffff',
+            inactiveTintColor: '#D4D2D0',
+            inactiveBackgroundColor: '#ffffff',
+        },
+
         buttonColors: {
             default: {
                 background: '#F4F2F0',
@@ -68,6 +75,13 @@ const themes = {
         mainTextColor: '#F4F2F0',
         mainBorderColor: '#D4D4D4',
         mainHighlightColor: '#99ccff',
+
+        tabBar: {
+            activeTintColor: '#FFF',
+            activeBackgroundColor: '#000',
+            inactiveTintColor: '#333',
+            inactiveBackgroundColor: '#000',
+        },
 
         buttonColors: {
             default: {
