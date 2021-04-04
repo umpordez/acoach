@@ -55,6 +55,10 @@ const themes = {
             background: '#F4F2F0',
             text: '#000',
             placeholderTextColor: '#C4C2C0',
+
+            backgroundInvalid: '#F4F2F0',
+            textInvalid: 'red',
+            borderInvalid: 'red',
         }
     },
 
@@ -73,8 +77,12 @@ const themes = {
 
         inputColors: {
             background: '#444',
-            text: '#FFF',
-            placeholderTextColor: '#C4C4C4'
+            text: '#F4F2F0',
+            placeholderTextColor: '#C4C4C4',
+
+            backgroundInvalid: '#444',
+            textInvalid: 'red',
+            borderInvalid: 'red',
         }
     }
 };
