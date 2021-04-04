@@ -41,6 +41,7 @@ const themes = {
         mainBackgroundColor: '#ffffff',
         mainTextColor: '#222222',
         mainBorderColor: '#D4D2D0',
+        mainHighlightColor: '#0066cc',
 
         buttonColors: {
             default: {
@@ -66,6 +67,7 @@ const themes = {
         mainBackgroundColor: '#000',
         mainTextColor: '#F4F2F0',
         mainBorderColor: '#D4D4D4',
+        mainHighlightColor: '#99ccff',
 
         buttonColors: {
             default: {

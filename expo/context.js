@@ -1,7 +1,7 @@
 import React, { createContext, useState, useMemo } from 'react';
 import PropTypes from 'prop-types';
 
-import { get, save } from './db/SecureStore';
+import { get } from './db/SecureStore';
 import logger from './logger';
 
 const UserContext = createContext();

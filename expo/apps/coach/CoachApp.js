@@ -1,6 +1,4 @@
 import React from 'react';
-import { View } from 'react-native';
-
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -10,24 +8,36 @@ import { useTheme } from '../../theme';
 import Display from '../../components/Display';
 import ThemedApp from '../../ThemedApp';
 
-import { H1 } from '../../components/text';
-import { Ionicons } from '@expo/vector-icons';
+import HomeScreen from './HomeScreen';
+import AccountScreen from './AccountScreen';
+
+import { FontAwesome5 } from '@expo/vector-icons';
 
 const Tab = createBottomTabNavigator();
 
-function HomeScreen() {
-    return <H1>Welcome home</H1>;
-}
-
 function PublicApp() {
-    const { mode } = useTheme();
+    const { theme, mode } = useTheme();
 
     return <NavigationContainer>
-        <ThemedApp>{ ({ nextModeText, setNextUiMode }) =>
+        <ThemedApp>{ () =>
             <Display style={ { flex: 1 } }>
-                <Tab.Navigator>
+                <Tab.Navigator
+                    screenOptions={({ route }) => ({
+                        tabBarIcon: function TabBarIcon({ color, size }) {
+                            return <FontAwesome5
+                                name={ route.name === 'Tasks' ? 'tasks' : 'user-tie' }
+                                color={ color }
+                                size={ size } />
+                    }})}
+                    tabBarOptions={ {
+                        showLabel: false,
+                        activeTintColor: theme.mainHighlightColor,
+                        activeBackgroundColor: theme.mainBackgroundColor,
+                        inactiveBackgroundColor: theme.mainBackgroundColor,
+                        inactiveTintColor: theme.mainTextColor,
+                    } }>
                     <Tab.Screen name='Tasks' component={ HomeScreen } />
-                    <Tab.Screen name='@Deividy' component={ HomeScreen } />
+                    <Tab.Screen name='@Deividy' component={ AccountScreen } />
                 </Tab.Navigator>
                 <StatusBar style={ mode === 'dark' ? 'light' : 'dark' } />
             </Display>}
