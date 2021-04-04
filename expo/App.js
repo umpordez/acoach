@@ -16,6 +16,10 @@ import ClientApp from './apps/client/ClientApp';
 import { AppearanceProvider } from 'react-native-appearance';
 import { UserProvider, UserContext } from './context';
 
+global.error = (err) => {
+    alert(err.message || err);
+};
+
 function AppSelector() {
     const { user } = useContext(UserContext);
 

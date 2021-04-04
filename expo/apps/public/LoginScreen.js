@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
 
@@ -9,6 +9,8 @@ import { validations, useFocus, randomNumber } from '../../utils';
 
 import Button from '../../components/Button';
 import ajaxAdapter from '../../ajaxAdapter';
+
+import { UserContext } from '../../context';
 
 const { notFoundMessages } = validations;
 
@@ -46,6 +48,8 @@ function LoginScreen({ navigation }) {
     const [ emailRef, setEmailFocus ] = useFocus();
     const [ passwordRef, setPasswordFocus ] = useFocus();
 
+    const { setUser } = useContext(UserContext);
+
     async function onSubmit() {
         const { error, field } = await submitLogin({ email, password });
 
@@ -55,6 +59,8 @@ function LoginScreen({ navigation }) {
 
             return setErrorObject({ message: error, field });
         }
+
+        setUser();
     }
 
     return <Display style={ styles.container }>

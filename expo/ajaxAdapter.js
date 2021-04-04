@@ -1,13 +1,15 @@
 import logger from './logger';
 import config from './config';
 
+import { get, save } from './db/SecureStore';
+
 async function doRequest(url, method, body, headers) {
     headers = headers || {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
     };
 
-    const jwtToken = localStorage.getItem('jwtToken');
+    const jwtToken = await get('jwtToken');
     if (jwtToken) {
         headers['Authorization'] = `Bearer ${jwtToken}`;
     }
@@ -23,7 +25,17 @@ async function doRequest(url, method, body, headers) {
 
         if (response.ok) {
             if (/json/.test(headers.Accept)) {
-                return response.json();
+                const json = await response.json();
+
+                if (json.token) {
+                    await save('jwtToken', json.token);
+
+                    await save('user', JSON.stringify(json.user));
+                    await save('account', JSON.stringify(json.account));
+                    await save('role', json.role);
+                }
+
+                return json;
             }
 
             return response;
@@ -33,7 +45,7 @@ async function doRequest(url, method, body, headers) {
     } catch (ex) {
         logger.error(ex);
 
-        if (ex.body) {
+        if (ex.headers && !ex.bodyUsed) {
             try {
                 ex.message = (await ex.json()).message;
             } catch(err) {

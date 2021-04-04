@@ -20,8 +20,7 @@ async function submitLogin(user) {
     }
 
     try {
-        const res = await ajaxAdapter.post('/login', user);
-        console.log(res);
+        await ajaxAdapter.post('/login', user);
     } catch(ex) {
         if (/not found/i.test(ex.message)) {
             const rand = randomNumber(0, notFoundMessages.length - 1);

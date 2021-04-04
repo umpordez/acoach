@@ -24,7 +24,9 @@ class UserModel extends ModelBase {
         const isSamePassword = await bcrypt.compare(password, user.password);
 
         if (!isSamePassword) {
-            throw new Error('invalid passsword');
+            const error = new Error('invalid password');
+            error.statusCode = 400;
+            throw error;
         }
 
         const userAccess = await this.db.user_access.oneRow({
