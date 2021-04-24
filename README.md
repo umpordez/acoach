@@ -2,7 +2,7 @@ acoach! ([input your name suggestion here](https://github.com/umpordez/acoach/is
 ===
 
 
-Welcome to our monorepo (:
+Welcome to our monorepo :D
 
 For contributing guidelines, please check [CONTRIBUTING.md](https://github.com/umpordez/acoach/blob/main/CONTRIBUTING.md) or [CODE.md](https://github.com/umpordez/acoach/blob/main/CODE.md) for coding styles.
 
