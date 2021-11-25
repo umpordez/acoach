@@ -5,7 +5,6 @@ import { Nunito_200ExtraLight } from '@expo-google-fonts/nunito';
 import { Halant_700Bold } from '@expo-google-fonts/halant';
 
 import { ThemeProvider } from './theme';
-
 import MainAppLoading from './components/MainAppLoading';
 
 import PublicApp from './apps/public/PublicApp';
